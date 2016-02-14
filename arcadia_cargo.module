@@ -1,0 +1,33 @@
+<?php
+/**
+* Implements hook_block_info().
+*/
+function arcadia_cargo_block_info() {
+  $blocks = array();
+  $blocks['google_maps_block'] = array(
+    'info' => t('Arcadia Cargo Google Maps Block.'),
+  );
+  return $blocks;
+}
+/**
+* Implements hook_block_view().
+*/
+function arcadia_cargo_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'google_maps_block':
+      $path = drupal_get_path('module', 'arcadia_cargo');
+      drupal_add_css($path . '/arcadia_cargo_maps.css');
+      drupal_add_js($path . '/arcadia_cargo_maps.js');
+      $block['subject'] = t('Location');
+      $block['content'] = _arcadia_cargo_block_content();
+      break;
+  }
+  return $block;
+}
+function _arcadia_cargo_block_content() {
+  $output = '<div id="map_wrapper">
+    <div id="map_canvas" class="mapping"></div>
+</div>';
+  return $output;
+}

@@ -1,0 +1,4 @@
+name = Arcadia Cargo
+description = All custom functionality for the website.
+package = Arcadia Cargo
+core = 7.x
